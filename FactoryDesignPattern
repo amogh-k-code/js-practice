@@ -1,0 +1,42 @@
+
+function standardMembership () {
+  
+  return {
+    playSongs() {
+      console.log('Playing songs...');
+      console.log('Why dont you try our premium subscrpition?? wala ad');
+      console.log('Continues playing songs');
+    },
+    getCost() {
+      return 0;
+    }
+  }
+}
+
+function premiumMembership () {
+  return {
+    playSongs() {
+      console.log('Playing songs without ads! Enjoy!');
+    } , 
+    getCost() {
+      return 199;
+    }
+  }
+}
+
+function MemberFactory () {
+  return {
+    createMembership : function(type) {
+      if(type === 'premium') {
+        return premiumMembership();
+      } else {
+        return standardMembership();
+      }
+    }
+  }
+}
+
+const member1 = MemberFactory().createMembership('standard');
+member1.playSongs();
+const member2 = MemberFactory().createMembership('premium');
+member2.playSongs();

@@ -1,0 +1,35 @@
+
+
+async function displayContentAsync() {
+  
+
+  let values = await Promise.all([
+    (async() => {
+  		let coffee = await fetchAndDecode('coffee.jpg', 'blob');
+			renderElement(coffee,'blob');      
+    })(); ,
+    (async() => {
+  		let tea = await fetchAndDecode('tea.jpg', 'blob');
+			renderElement(tea,'blob');      
+    })(); ,
+    (async() => {
+  		let descText = await fetchAndDecode('description.txt', 'text');
+			renderElement(descText,'text');      
+    })();   
+  ]);
+}
+
+function renderElement(ele, type) {
+  if(type === 'blob') {
+    let objectURL = URL.createObjectURL(ele);
+    let image = document.createElement('img');
+    document.body.appendChild(image);
+  }
+  else if (type === 'text') {
+     let para = document.createElement('p');
+  	 para.textContent = ele;
+  	 document.body.appendChild(para);
+  }
+}
+
+displayContentAsync();

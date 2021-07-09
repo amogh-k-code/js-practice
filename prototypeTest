@@ -1,0 +1,17 @@
+function foo(){};
+console.log(foo.prototype);
+foo.prototype.lol="Laugh prop";
+foo.prototype.printLol = function(){console.log(this.lol)};
+
+console.log(foo.prototype.printLol());
+
+var obj1 = new foo();
+console.log(obj1.__proto__);
+obj1.lol = "Laugh obj1 prop";
+console.log(obj1.lol);
+console.log("=================");
+console.log(obj1.printLol());
+
+var lolObj = {"lol" : "Lol object se aa raha hai gandu!"};
+obj1.printLol();
+obj1.printLol.call(lolObj);

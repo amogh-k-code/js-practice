@@ -1,0 +1,32 @@
+function Bicycle(cadence,speed,gear,tirePressure) {
+  this.cadence = cadence;
+  this.speed = speed;
+  this.gear = gear;
+  this.tirePressure = tirePressure;
+  this.inflateTires = function(){
+    console.log(this);
+    this.tirePressure += 3;
+    return this.tirePressure;
+  };
+}
+
+function Mechanic(name) {
+  this.name = name;
+}
+
+var bicycle = new Bicycle(50,20,4,30);
+console.log("Bicycle object");
+bicycle.inflateTires();
+
+var jason = new Mechanic("Jason");
+jason.inflateTires = bicycle.inflateTires;
+console.log("Jason Mechanic object");
+jason.inflateTires();
+console.log(jason);
+
+var mike = new Mechanic("Mike");
+mike.inflateTires  = bicycle.inflateTires;
+console.log("Mike Mechanic object");
+mike.inflateTires.call(bicycle);
+console.log(mike);
+
